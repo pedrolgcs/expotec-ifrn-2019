@@ -8,6 +8,7 @@ routes.get('/', (req, res) => res.json({ message: 'expotec 2019' }));
 routes.get('/contacts', ContactController.index);
 routes.post('/contacts', ContactController.store);
 routes.get('/contacts/:id', ContactController.show);
+routes.put('/contacts/:id', ContactController.update);
 routes.delete('/contacts/:id', ContactController.delete);
 
 export default routes;

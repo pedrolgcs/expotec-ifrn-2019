@@ -26,8 +26,25 @@ class ContactController {
     }
   }
 
+  async update(req, res) {
+    const { name, phone, favorite } = req.body;
+    try {
+      const contact = await Contact.findByIdAndUpdate(
+        req.params.id,
+        {
+          name,
+          phone,
+          favorite
+        },
+        { new: true }
+      );
+      return res.json(contact);
+    } catch (error) {
+      return res.status(404).json(error);
+    }
+  }
+
   async delete(req, res) {
-    const contact = Contact.findById(req.params.id);
     if (!contact) {
       return res.status(404).json({ error: 'Contato não encontrado' });
     }
